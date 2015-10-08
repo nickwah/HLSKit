@@ -25,6 +25,7 @@
 		01C498A61BC5B6A1003F2053 /* M3U8SegmentInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 01C498991BC5B6A1003F2053 /* M3U8SegmentInfo.m */; settings = {ASSET_TAGS = (); }; };
 		01C498A71BC5B6A1003F2053 /* M3U8SegmentInfoList.m in Sources */ = {isa = PBXBuildFile; fileRef = 01C4989B1BC5B6A1003F2053 /* M3U8SegmentInfoList.m */; settings = {ASSET_TAGS = (); }; };
 		01C498A81BC5B6A1003F2053 /* NSString+m3u8.m in Sources */ = {isa = PBXBuildFile; fileRef = 01C4989E1BC5B6A1003F2053 /* NSString+m3u8.m */; settings = {ASSET_TAGS = (); }; };
+		01C498AF1BC70E41003F2053 /* HLSBandwidthTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = 01C498AE1BC70E41003F2053 /* HLSBandwidthTracker.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -65,6 +66,8 @@
 		01C4989D1BC5B6A1003F2053 /* NSString+m3u8.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+m3u8.h"; sourceTree = "<group>"; };
 		01C4989E1BC5B6A1003F2053 /* NSString+m3u8.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+m3u8.m"; sourceTree = "<group>"; };
 		01C498A91BC5B6D4003F2053 /* M3U8Kit-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "M3U8Kit-Prefix.pch"; sourceTree = "<group>"; };
+		01C498AD1BC70E41003F2053 /* HLSBandwidthTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLSBandwidthTracker.h; sourceTree = "<group>"; };
+		01C498AE1BC70E41003F2053 /* HLSBandwidthTracker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLSBandwidthTracker.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +109,8 @@
 				01C498831BC5AED8003F2053 /* HLSNetworkManager.m */,
 				01C498851BC5B654003F2053 /* HLSDownloader.h */,
 				01C498861BC5B654003F2053 /* HLSDownloader.m */,
+				01C498AD1BC70E41003F2053 /* HLSBandwidthTracker.h */,
+				01C498AE1BC70E41003F2053 /* HLSBandwidthTracker.m */,
 				01C498741BC5AE2B003F2053 /* Main.storyboard */,
 				01C498771BC5AE2B003F2053 /* Assets.xcassets */,
 				01C498791BC5AE2B003F2053 /* LaunchScreen.storyboard */,
@@ -231,6 +236,7 @@
 				01C498701BC5AE2B003F2053 /* AppDelegate.m in Sources */,
 				01C498A01BC5B6A1003F2053 /* M3U8ExtXMediaList.m in Sources */,
 				01C498A11BC5B6A1003F2053 /* M3U8ExtXStreamInf.m in Sources */,
+				01C498AF1BC70E41003F2053 /* HLSBandwidthTracker.m in Sources */,
 				01C498841BC5AED8003F2053 /* HLSNetworkManager.m in Sources */,
 				01C4986D1BC5AE2B003F2053 /* main.m in Sources */,
 				01C498A31BC5B6A1003F2053 /* M3U8MasterPlaylist.m in Sources */,
@@ -388,6 +394,7 @@
 				01C498811BC5AE2B003F2053 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -55,12 +55,12 @@
     return [array copy];
 }
 
-- (NSArray*)segmentsAtTimeFromEnd:(NSTimeInterval)time {
+- (NSArray<M3U8SegmentInfo*>*)segmentsAtTimeFromEnd:(NSTimeInterval)time {
     NSTimeInterval accumulatedDuration = 0;
     NSMutableArray *segments = [NSMutableArray array];
     for (int i = (int)self.segmentList.count - 1; i >= 0; i --) {
         M3U8SegmentInfo *info = [self.segmentList segmentInfoAtIndex:i];
-        [segments insertObject:info.mediaURL atIndex:0];
+        [segments insertObject:info atIndex:0];
         accumulatedDuration += info.duration;
         if (accumulatedDuration >= time) break;
     }
@@ -70,6 +70,15 @@
 - (void)parseMediaPlaylist {
     
     self.segmentList = [[M3U8SegmentInfoList alloc] init];
+    
+    BOOL foundSequence = NO;
+    NSRange sequenceLocation = [self.originalText rangeOfString:M3U8_EXT_X_MEDIA_SEQUENCE];
+    if (sequenceLocation.location != NSNotFound) {
+        NSUInteger startLocation = sequenceLocation.location + sequenceLocation.length;
+        NSRange newLine = [self.originalText rangeOfString:@"\n" options:NSLiteralSearch range:NSMakeRange(startLocation, 10)];
+        self.segmentList.sequence = [[self.originalText substringWithRange:NSMakeRange(startLocation, newLine.location - startLocation)] integerValue];
+        foundSequence = YES;
+    }
     
     NSRange segmentRange = [self.originalText rangeOfString:M3U8_EXTINF];
     NSString *remainingSegments = self.originalText;
@@ -116,6 +125,7 @@
         
         M3U8SegmentInfo *segment = [[M3U8SegmentInfo alloc] initWithDictionary:params];
         if (segment) {
+            if (foundSequence) segment.sequence = self.segmentList.sequence + self.segmentList.count;
             [self.segmentList addSegementInfo:segment];
         }
         

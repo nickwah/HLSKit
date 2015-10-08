@@ -16,7 +16,7 @@
 - (void)downloader:(HLSDownloader*)downloader gotSegment:(NSData*)mpegTsData;
 
 @optional
-- (void)downloader:(HLSDownloader*)downloader gotLevels:(NSArray*)levels;
+- (void)downloader:(HLSDownloader*)downloader gotLevels:(NSArray<NSNumber*>*)levels;
 - (void)downloaderStopped:(HLSDownloader*)downloader;
 
 @end

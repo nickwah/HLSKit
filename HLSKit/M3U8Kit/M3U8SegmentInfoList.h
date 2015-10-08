@@ -11,6 +11,7 @@
 
 @interface M3U8SegmentInfoList : NSObject
 
+@property (nonatomic) NSUInteger sequence;
 @property (nonatomic, assign ,readonly) NSUInteger count;
 
 - (void)addSegementInfo:(M3U8SegmentInfo *)segment;

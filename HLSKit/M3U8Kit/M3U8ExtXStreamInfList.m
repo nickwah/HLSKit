@@ -67,6 +67,20 @@
     self.m3u8InfoList = [array mutableCopy];
 }
 
+- (NSArray<M3U8ExtXStreamInf *> *)asArray {
+    [self sortByBandwidthInOrder:NSOrderedAscending];
+    return self.m3u8InfoList;
+}
+
+- (NSArray<NSNumber *> *)bandwidthArray {
+    NSArray *array = self.asArray;
+    NSMutableArray *output = [NSMutableArray arrayWithCapacity:array.count];
+    for (M3U8ExtXStreamInf *info in array) {
+        [output addObject:@(info.bandwidth)];
+    }
+    return output;
+}
+
 - (NSString *)description {
     return [NSString stringWithFormat:@"%@", self.m3u8InfoList];
 }

@@ -33,6 +33,6 @@ typedef enum {
 - (instancetype)initWithContentOfURL:(NSURL *)URL type:(M3U8MediaPlaylistType)type error:(NSError **)error;
 
 - (NSArray *)allSegmentURLs;
-- (NSArray*)segmentsAtTimeFromEnd:(NSTimeInterval)time;
+- (NSArray<M3U8SegmentInfo *>*)segmentsAtTimeFromEnd:(NSTimeInterval)time;
 
 @end

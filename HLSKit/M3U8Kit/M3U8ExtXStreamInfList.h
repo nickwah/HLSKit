@@ -19,5 +19,7 @@
 - (M3U8ExtXStreamInf *)lastXStreamInf;
 
 - (void)sortByBandwidthInOrder:(NSComparisonResult)order;
+- (NSArray<M3U8ExtXStreamInf *> *)asArray;
+- (NSArray<NSNumber *> *)bandwidthArray;
 
 @end

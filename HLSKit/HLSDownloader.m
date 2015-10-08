@@ -7,8 +7,10 @@
 //
 
 #import "HLSDownloader.h"
+#import "HLSBandwidthTracker.h"
 #import "HLSNetworkManager.h"
 #import "M3U8Kit.h"
+@import QuartzCore;
 
 @implementation HLSDownloader {
     NSString *_url;
@@ -19,6 +21,7 @@
     NSString *_lastPlaylistResponse;
     BOOL _networkBusy;
     NSMutableSet *_seenSegments;
+    HLSBandwidthTracker *_bandwidthTracker;
 }
 @synthesize numLevels = _numLevels;
 @synthesize currentLevel = _currentLevel;
@@ -34,7 +37,9 @@
         self.delegate = delegate;
         self.refreshInterval = 0.5;
         _currentLevel = -1;
-        _bufferTime = 4.0;
+        _bufferTime = 2.0;
+        _seenSegments = [NSMutableSet set];
+        _bandwidthTracker = [[HLSBandwidthTracker alloc] init];
     }
     return self;
 }
@@ -90,11 +95,12 @@
         strongSelf->_networkBusy = NO;
         if ([response isMasterPlaylist]) {
             strongSelf->_masterList = [[M3U8MasterPlaylist alloc] initWithContent:response baseURL:url];
+            NSArray *levels = strongSelf->_masterList.xStreamList.bandwidthArray; // side effect: sorts by bandwidth
             NSArray *streamUrls = strongSelf->_masterList.allStreamURLs;
             strongSelf->_numLevels = (int)streamUrls.count;
             if (strongSelf->_currentLevel == -1) {
                 strongSelf->_currentLevel = _numLevels - 1;
-                [strongSelf.delegate downloader:strongSelf gotLevels:streamUrls];
+                [strongSelf.delegate downloader:strongSelf gotLevels:levels];
             }
             [strongSelf fetchPlaylist:streamUrls[strongSelf->_currentLevel] baseUrl:url];
         } else if ([response isMediaPlaylist]) {
@@ -103,16 +109,13 @@
             M3U8MediaPlaylist *mediaList = [[M3U8MediaPlaylist alloc] initWithContent:response type:M3U8MediaPlaylistTypeMedia baseURL:url];
             strongSelf->_mediaList = mediaList;
             
-            NSArray *segments = [mediaList segmentsAtTimeFromEnd:strongSelf->_bufferTime];
+            NSArray<M3U8SegmentInfo*> *segments = [mediaList segmentsAtTimeFromEnd:strongSelf->_bufferTime];
 
             if (!segments.count) {
                 [strongSelf.delegate downloader:strongSelf playlistError:[NSError errorWithDomain:@"HLSDownloader" code:0 userInfo:@{@"message": @"No segments in playlist"}]];
                 return;
             }
             [strongSelf fetchAllSegments:segments];
-            for (NSString *segment in segments) {
-                [strongSelf->_seenSegments addObject:segment];
-            }
         } else {
             [strongSelf.delegate downloader:strongSelf playlistError:[NSError errorWithDomain:@"HLSDownloader" code:0 userInfo:@{@"message": @"Playlist not found"}]];
             [strongSelf stop];
@@ -124,19 +127,26 @@
     }];
 }
 
-- (void)fetchAllSegments:(NSArray*)segments {
+- (void)fetchAllSegments:(NSArray<M3U8SegmentInfo*>*)segments {
     if (!segments.count) return;
-    NSString *segment = segments.firstObject;
+    M3U8SegmentInfo *segment = segments.firstObject;
     NSArray *remaining = [segments subarrayWithRange:NSMakeRange(1, segments.count - 1)];
-    if ([_seenSegments containsObject:segment]) {
+    id segmentId = segment.sequence ? @(segment.sequence) : segment.mediaURL;
+    if ([_seenSegments containsObject:segmentId]) {
         [self fetchAllSegments:remaining];
         return;
     }
+    [_seenSegments addObject:segmentId];
+    double startTime = CACurrentMediaTime();
     __weak typeof(self)weakSelf = self;
-    [[HLSNetworkManager sharedManager] getData:segment success:^(NSData *response) {
+    [[HLSNetworkManager sharedManager] getData:segment.mediaURL success:^(NSData *response) {
         if (!weakSelf) return;
+        __strong typeof(weakSelf)strongSelf = weakSelf;
+        [strongSelf->_bandwidthTracker addDatapoint:response.length time:(CACurrentMediaTime() - startTime)];
+        NSLog(@"After sequence %@: Avg bandwidth: %d  trailing: %d", segmentId, (int)strongSelf->_bandwidthTracker.averageBitrate, (int)strongSelf->_bandwidthTracker.trailingAverageBitrate);
         [weakSelf.delegate downloader:weakSelf gotSegment:response];
         [weakSelf fetchAllSegments:remaining];
+        
     } failure:^(NSError *error) {
         [weakSelf.delegate downloader:weakSelf playlistError:error];
     }];
