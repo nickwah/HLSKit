@@ -1,0 +1,395 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		01C4986D1BC5AE2B003F2053 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 01C4986C1BC5AE2B003F2053 /* main.m */; };
+		01C498701BC5AE2B003F2053 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 01C4986F1BC5AE2B003F2053 /* AppDelegate.m */; };
+		01C498731BC5AE2B003F2053 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01C498721BC5AE2B003F2053 /* ViewController.m */; };
+		01C498761BC5AE2B003F2053 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01C498741BC5AE2B003F2053 /* Main.storyboard */; };
+		01C498781BC5AE2B003F2053 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01C498771BC5AE2B003F2053 /* Assets.xcassets */; };
+		01C4987B1BC5AE2B003F2053 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01C498791BC5AE2B003F2053 /* LaunchScreen.storyboard */; };
+		01C498841BC5AED8003F2053 /* HLSNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 01C498831BC5AED8003F2053 /* HLSNetworkManager.m */; settings = {ASSET_TAGS = (); }; };
+		01C498871BC5B654003F2053 /* HLSDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 01C498861BC5B654003F2053 /* HLSDownloader.m */; settings = {ASSET_TAGS = (); }; };
+		01C4989F1BC5B6A1003F2053 /* M3U8ExtXMedia.m in Sources */ = {isa = PBXBuildFile; fileRef = 01C4988A1BC5B6A1003F2053 /* M3U8ExtXMedia.m */; settings = {ASSET_TAGS = (); }; };
+		01C498A01BC5B6A1003F2053 /* M3U8ExtXMediaList.m in Sources */ = {isa = PBXBuildFile; fileRef = 01C4988C1BC5B6A1003F2053 /* M3U8ExtXMediaList.m */; settings = {ASSET_TAGS = (); }; };
+		01C498A11BC5B6A1003F2053 /* M3U8ExtXStreamInf.m in Sources */ = {isa = PBXBuildFile; fileRef = 01C4988E1BC5B6A1003F2053 /* M3U8ExtXStreamInf.m */; settings = {ASSET_TAGS = (); }; };
+		01C498A21BC5B6A1003F2053 /* M3U8ExtXStreamInfList.m in Sources */ = {isa = PBXBuildFile; fileRef = 01C498901BC5B6A1003F2053 /* M3U8ExtXStreamInfList.m */; settings = {ASSET_TAGS = (); }; };
+		01C498A31BC5B6A1003F2053 /* M3U8MasterPlaylist.m in Sources */ = {isa = PBXBuildFile; fileRef = 01C498931BC5B6A1003F2053 /* M3U8MasterPlaylist.m */; settings = {ASSET_TAGS = (); }; };
+		01C498A41BC5B6A1003F2053 /* M3U8MediaPlaylist.m in Sources */ = {isa = PBXBuildFile; fileRef = 01C498951BC5B6A1003F2053 /* M3U8MediaPlaylist.m */; settings = {ASSET_TAGS = (); }; };
+		01C498A51BC5B6A1003F2053 /* M3U8PlaylistModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 01C498971BC5B6A1003F2053 /* M3U8PlaylistModel.m */; settings = {ASSET_TAGS = (); }; };
+		01C498A61BC5B6A1003F2053 /* M3U8SegmentInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 01C498991BC5B6A1003F2053 /* M3U8SegmentInfo.m */; settings = {ASSET_TAGS = (); }; };
+		01C498A71BC5B6A1003F2053 /* M3U8SegmentInfoList.m in Sources */ = {isa = PBXBuildFile; fileRef = 01C4989B1BC5B6A1003F2053 /* M3U8SegmentInfoList.m */; settings = {ASSET_TAGS = (); }; };
+		01C498A81BC5B6A1003F2053 /* NSString+m3u8.m in Sources */ = {isa = PBXBuildFile; fileRef = 01C4989E1BC5B6A1003F2053 /* NSString+m3u8.m */; settings = {ASSET_TAGS = (); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		01C498681BC5AE2B003F2053 /* HLSKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HLSKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		01C4986C1BC5AE2B003F2053 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		01C4986E1BC5AE2B003F2053 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		01C4986F1BC5AE2B003F2053 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		01C498711BC5AE2B003F2053 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		01C498721BC5AE2B003F2053 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		01C498751BC5AE2B003F2053 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		01C498771BC5AE2B003F2053 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		01C4987A1BC5AE2B003F2053 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		01C4987C1BC5AE2B003F2053 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		01C498821BC5AED8003F2053 /* HLSNetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLSNetworkManager.h; sourceTree = "<group>"; };
+		01C498831BC5AED8003F2053 /* HLSNetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLSNetworkManager.m; sourceTree = "<group>"; };
+		01C498851BC5B654003F2053 /* HLSDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLSDownloader.h; sourceTree = "<group>"; };
+		01C498861BC5B654003F2053 /* HLSDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLSDownloader.m; sourceTree = "<group>"; };
+		01C498891BC5B6A1003F2053 /* M3U8ExtXMedia.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M3U8ExtXMedia.h; sourceTree = "<group>"; };
+		01C4988A1BC5B6A1003F2053 /* M3U8ExtXMedia.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M3U8ExtXMedia.m; sourceTree = "<group>"; };
+		01C4988B1BC5B6A1003F2053 /* M3U8ExtXMediaList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M3U8ExtXMediaList.h; sourceTree = "<group>"; };
+		01C4988C1BC5B6A1003F2053 /* M3U8ExtXMediaList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M3U8ExtXMediaList.m; sourceTree = "<group>"; };
+		01C4988D1BC5B6A1003F2053 /* M3U8ExtXStreamInf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M3U8ExtXStreamInf.h; sourceTree = "<group>"; };
+		01C4988E1BC5B6A1003F2053 /* M3U8ExtXStreamInf.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M3U8ExtXStreamInf.m; sourceTree = "<group>"; };
+		01C4988F1BC5B6A1003F2053 /* M3U8ExtXStreamInfList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M3U8ExtXStreamInfList.h; sourceTree = "<group>"; };
+		01C498901BC5B6A1003F2053 /* M3U8ExtXStreamInfList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M3U8ExtXStreamInfList.m; sourceTree = "<group>"; };
+		01C498911BC5B6A1003F2053 /* M3U8Kit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M3U8Kit.h; sourceTree = "<group>"; };
+		01C498921BC5B6A1003F2053 /* M3U8MasterPlaylist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M3U8MasterPlaylist.h; sourceTree = "<group>"; };
+		01C498931BC5B6A1003F2053 /* M3U8MasterPlaylist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M3U8MasterPlaylist.m; sourceTree = "<group>"; };
+		01C498941BC5B6A1003F2053 /* M3U8MediaPlaylist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M3U8MediaPlaylist.h; sourceTree = "<group>"; };
+		01C498951BC5B6A1003F2053 /* M3U8MediaPlaylist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M3U8MediaPlaylist.m; sourceTree = "<group>"; };
+		01C498961BC5B6A1003F2053 /* M3U8PlaylistModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M3U8PlaylistModel.h; sourceTree = "<group>"; };
+		01C498971BC5B6A1003F2053 /* M3U8PlaylistModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M3U8PlaylistModel.m; sourceTree = "<group>"; };
+		01C498981BC5B6A1003F2053 /* M3U8SegmentInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M3U8SegmentInfo.h; sourceTree = "<group>"; };
+		01C498991BC5B6A1003F2053 /* M3U8SegmentInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M3U8SegmentInfo.m; sourceTree = "<group>"; };
+		01C4989A1BC5B6A1003F2053 /* M3U8SegmentInfoList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M3U8SegmentInfoList.h; sourceTree = "<group>"; };
+		01C4989B1BC5B6A1003F2053 /* M3U8SegmentInfoList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M3U8SegmentInfoList.m; sourceTree = "<group>"; };
+		01C4989C1BC5B6A1003F2053 /* M3U8TagsAndAttributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M3U8TagsAndAttributes.h; sourceTree = "<group>"; };
+		01C4989D1BC5B6A1003F2053 /* NSString+m3u8.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+m3u8.h"; sourceTree = "<group>"; };
+		01C4989E1BC5B6A1003F2053 /* NSString+m3u8.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+m3u8.m"; sourceTree = "<group>"; };
+		01C498A91BC5B6D4003F2053 /* M3U8Kit-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "M3U8Kit-Prefix.pch"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		01C498651BC5AE2B003F2053 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		01C4985F1BC5AE2B003F2053 = {
+			isa = PBXGroup;
+			children = (
+				01C4986A1BC5AE2B003F2053 /* HLSKit */,
+				01C498691BC5AE2B003F2053 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		01C498691BC5AE2B003F2053 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				01C498681BC5AE2B003F2053 /* HLSKit.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		01C4986A1BC5AE2B003F2053 /* HLSKit */ = {
+			isa = PBXGroup;
+			children = (
+				01C498881BC5B6A1003F2053 /* M3U8Kit */,
+				01C4986E1BC5AE2B003F2053 /* AppDelegate.h */,
+				01C4986F1BC5AE2B003F2053 /* AppDelegate.m */,
+				01C498711BC5AE2B003F2053 /* ViewController.h */,
+				01C498721BC5AE2B003F2053 /* ViewController.m */,
+				01C498821BC5AED8003F2053 /* HLSNetworkManager.h */,
+				01C498831BC5AED8003F2053 /* HLSNetworkManager.m */,
+				01C498851BC5B654003F2053 /* HLSDownloader.h */,
+				01C498861BC5B654003F2053 /* HLSDownloader.m */,
+				01C498741BC5AE2B003F2053 /* Main.storyboard */,
+				01C498771BC5AE2B003F2053 /* Assets.xcassets */,
+				01C498791BC5AE2B003F2053 /* LaunchScreen.storyboard */,
+				01C4987C1BC5AE2B003F2053 /* Info.plist */,
+				01C4986B1BC5AE2B003F2053 /* Supporting Files */,
+			);
+			path = HLSKit;
+			sourceTree = "<group>";
+		};
+		01C4986B1BC5AE2B003F2053 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				01C4986C1BC5AE2B003F2053 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		01C498881BC5B6A1003F2053 /* M3U8Kit */ = {
+			isa = PBXGroup;
+			children = (
+				01C498A91BC5B6D4003F2053 /* M3U8Kit-Prefix.pch */,
+				01C498891BC5B6A1003F2053 /* M3U8ExtXMedia.h */,
+				01C4988A1BC5B6A1003F2053 /* M3U8ExtXMedia.m */,
+				01C4988B1BC5B6A1003F2053 /* M3U8ExtXMediaList.h */,
+				01C4988C1BC5B6A1003F2053 /* M3U8ExtXMediaList.m */,
+				01C4988D1BC5B6A1003F2053 /* M3U8ExtXStreamInf.h */,
+				01C4988E1BC5B6A1003F2053 /* M3U8ExtXStreamInf.m */,
+				01C4988F1BC5B6A1003F2053 /* M3U8ExtXStreamInfList.h */,
+				01C498901BC5B6A1003F2053 /* M3U8ExtXStreamInfList.m */,
+				01C498911BC5B6A1003F2053 /* M3U8Kit.h */,
+				01C498921BC5B6A1003F2053 /* M3U8MasterPlaylist.h */,
+				01C498931BC5B6A1003F2053 /* M3U8MasterPlaylist.m */,
+				01C498941BC5B6A1003F2053 /* M3U8MediaPlaylist.h */,
+				01C498951BC5B6A1003F2053 /* M3U8MediaPlaylist.m */,
+				01C498961BC5B6A1003F2053 /* M3U8PlaylistModel.h */,
+				01C498971BC5B6A1003F2053 /* M3U8PlaylistModel.m */,
+				01C498981BC5B6A1003F2053 /* M3U8SegmentInfo.h */,
+				01C498991BC5B6A1003F2053 /* M3U8SegmentInfo.m */,
+				01C4989A1BC5B6A1003F2053 /* M3U8SegmentInfoList.h */,
+				01C4989B1BC5B6A1003F2053 /* M3U8SegmentInfoList.m */,
+				01C4989C1BC5B6A1003F2053 /* M3U8TagsAndAttributes.h */,
+				01C4989D1BC5B6A1003F2053 /* NSString+m3u8.h */,
+				01C4989E1BC5B6A1003F2053 /* NSString+m3u8.m */,
+			);
+			path = M3U8Kit;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		01C498671BC5AE2B003F2053 /* HLSKit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 01C4987F1BC5AE2B003F2053 /* Build configuration list for PBXNativeTarget "HLSKit" */;
+			buildPhases = (
+				01C498641BC5AE2B003F2053 /* Sources */,
+				01C498651BC5AE2B003F2053 /* Frameworks */,
+				01C498661BC5AE2B003F2053 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HLSKit;
+			productName = HLSKit;
+			productReference = 01C498681BC5AE2B003F2053 /* HLSKit.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		01C498601BC5AE2B003F2053 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0700;
+				ORGANIZATIONNAME = "Nicholas White";
+				TargetAttributes = {
+					01C498671BC5AE2B003F2053 = {
+						CreatedOnToolsVersion = 7.0.1;
+					};
+				};
+			};
+			buildConfigurationList = 01C498631BC5AE2B003F2053 /* Build configuration list for PBXProject "HLSKit" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 01C4985F1BC5AE2B003F2053;
+			productRefGroup = 01C498691BC5AE2B003F2053 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				01C498671BC5AE2B003F2053 /* HLSKit */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		01C498661BC5AE2B003F2053 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				01C4987B1BC5AE2B003F2053 /* LaunchScreen.storyboard in Resources */,
+				01C498781BC5AE2B003F2053 /* Assets.xcassets in Resources */,
+				01C498761BC5AE2B003F2053 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		01C498641BC5AE2B003F2053 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				01C498A61BC5B6A1003F2053 /* M3U8SegmentInfo.m in Sources */,
+				01C498A81BC5B6A1003F2053 /* NSString+m3u8.m in Sources */,
+				01C4989F1BC5B6A1003F2053 /* M3U8ExtXMedia.m in Sources */,
+				01C498871BC5B654003F2053 /* HLSDownloader.m in Sources */,
+				01C498731BC5AE2B003F2053 /* ViewController.m in Sources */,
+				01C498701BC5AE2B003F2053 /* AppDelegate.m in Sources */,
+				01C498A01BC5B6A1003F2053 /* M3U8ExtXMediaList.m in Sources */,
+				01C498A11BC5B6A1003F2053 /* M3U8ExtXStreamInf.m in Sources */,
+				01C498841BC5AED8003F2053 /* HLSNetworkManager.m in Sources */,
+				01C4986D1BC5AE2B003F2053 /* main.m in Sources */,
+				01C498A31BC5B6A1003F2053 /* M3U8MasterPlaylist.m in Sources */,
+				01C498A71BC5B6A1003F2053 /* M3U8SegmentInfoList.m in Sources */,
+				01C498A41BC5B6A1003F2053 /* M3U8MediaPlaylist.m in Sources */,
+				01C498A51BC5B6A1003F2053 /* M3U8PlaylistModel.m in Sources */,
+				01C498A21BC5B6A1003F2053 /* M3U8ExtXStreamInfList.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		01C498741BC5AE2B003F2053 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				01C498751BC5AE2B003F2053 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		01C498791BC5AE2B003F2053 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				01C4987A1BC5AE2B003F2053 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		01C4987D1BC5AE2B003F2053 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		01C4987E1BC5AE2B003F2053 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		01C498801BC5AE2B003F2053 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PREFIX_HEADER = "./HLSKit/M3U8Kit/M3U8Kit-Prefix.pch";
+				INFOPLIST_FILE = HLSKit/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.mylikes.HLSKit;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		01C498811BC5AE2B003F2053 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PREFIX_HEADER = "./HLSKit/M3U8Kit/M3U8Kit-Prefix.pch";
+				INFOPLIST_FILE = HLSKit/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.mylikes.HLSKit;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		01C498631BC5AE2B003F2053 /* Build configuration list for PBXProject "HLSKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				01C4987D1BC5AE2B003F2053 /* Debug */,
+				01C4987E1BC5AE2B003F2053 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		01C4987F1BC5AE2B003F2053 /* Build configuration list for PBXNativeTarget "HLSKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				01C498801BC5AE2B003F2053 /* Debug */,
+				01C498811BC5AE2B003F2053 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 01C498601BC5AE2B003F2053 /* Project object */;
+}

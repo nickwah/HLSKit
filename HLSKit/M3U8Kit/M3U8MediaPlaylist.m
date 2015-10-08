@@ -55,6 +55,18 @@
     return [array copy];
 }
 
+- (NSArray*)segmentsAtTimeFromEnd:(NSTimeInterval)time {
+    NSTimeInterval accumulatedDuration = 0;
+    NSMutableArray *segments = [NSMutableArray array];
+    for (int i = (int)self.segmentList.count - 1; i >= 0; i --) {
+        M3U8SegmentInfo *info = [self.segmentList segmentInfoAtIndex:i];
+        [segments insertObject:info.mediaURL atIndex:0];
+        accumulatedDuration += info.duration;
+        if (accumulatedDuration >= time) break;
+    }
+    return segments;
+}
+
 - (void)parseMediaPlaylist {
     
     self.segmentList = [[M3U8SegmentInfoList alloc] init];
