@@ -21,12 +21,20 @@
 
 @end
 
+typedef enum : NSUInteger {
+    HLSLogLevelError,
+    HLSLogLevelInfo,
+    HLSLogLevelDebug,
+    HLSLogLevelVerbose,
+} HLSLogLevel;
+
 @interface HLSDownloader : NSObject
 
 @property (weak, nonatomic) id<HLSDownloaderDelegate>delegate;
 @property (nonatomic, strong, readonly) NSString* url;
 @property (nonatomic) int numLevels;
 @property (nonatomic) int currentLevel;
+@property (nonatomic) HLSLogLevel logLevel;
 
 // How often to refresh the m3u8 file containing video segments.
 @property (nonatomic) NSTimeInterval refreshInterval; // Defaults to 0.5 seconds

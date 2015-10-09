@@ -26,6 +26,7 @@
 @synthesize numLevels = _numLevels;
 @synthesize currentLevel = _currentLevel;
 @synthesize bufferTime = _bufferTime;
+@synthesize logLevel = _logLevel;
 
 - (instancetype)initWithUrl:(NSString *)url {
     return [self initWithUrl:url delegate:nil];
@@ -77,13 +78,16 @@
 }
 - (void)setCurrentLevel:(int)currentLevel {
     if (_currentLevel != currentLevel) {
+        if (_logLevel >= HLSLogLevelInfo)
+            NSLog(@"Change HLS level to %d", currentLevel);
         _mediaList = nil;
         _currentLevel = currentLevel;
     }
 }
 
 - (void)fetchPlaylist:(NSString*) url baseUrl:(NSString *)baseUrl {
-    //NSLog(@"Fetch %@ with base url %@", url, baseUrl);
+    if (_logLevel >= HLSLogLevelDebug)
+        NSLog(@"Fetch %@ with base url %@", url, baseUrl);
     if (baseUrl) {
         url = [[NSURL URLWithString:url relativeToURL:[NSURL URLWithString:baseUrl]] absoluteString];
     }
@@ -99,7 +103,7 @@
             NSArray *streamUrls = strongSelf->_masterList.allStreamURLs;
             strongSelf->_numLevels = (int)streamUrls.count;
             if (strongSelf->_currentLevel == -1) {
-                strongSelf->_currentLevel = _numLevels - 1;
+                strongSelf->_currentLevel = 0; //strongSelf->_numLevels - 1;
                 [strongSelf.delegate downloader:strongSelf gotLevels:levels];
             }
             [strongSelf fetchPlaylist:streamUrls[strongSelf->_currentLevel] baseUrl:url];
@@ -127,6 +131,24 @@
     }];
 }
 
+- (void)maybeChangeLevels {
+    [self setCurrentLevel:[self bestAvailableLevel]];
+}
+
+- (int)bestAvailableLevel {
+    if (_masterList) {
+        NSArray *levels = _masterList.xStreamList.bandwidthArray;
+        double downloadBitrate = _bandwidthTracker.trailingAverageBitrate;
+        for (int i = (int)levels.count - 1; i >= 0; i--) {
+            NSNumber *levelBitrate = levels[i];
+            if ([levelBitrate doubleValue] < downloadBitrate) {
+                return i;
+            }
+        }
+    }
+    return 0; // return -1 as an error case?
+}
+
 - (void)fetchAllSegments:(NSArray<M3U8SegmentInfo*>*)segments {
     if (!segments.count) return;
     M3U8SegmentInfo *segment = segments.firstObject;
@@ -143,7 +165,9 @@
         if (!weakSelf) return;
         __strong typeof(weakSelf)strongSelf = weakSelf;
         [strongSelf->_bandwidthTracker addDatapoint:response.length time:(CACurrentMediaTime() - startTime)];
-        NSLog(@"After sequence %@: Avg bandwidth: %d  trailing: %d", segmentId, (int)strongSelf->_bandwidthTracker.averageBitrate, (int)strongSelf->_bandwidthTracker.trailingAverageBitrate);
+        if (_logLevel >= HLSLogLevelDebug)
+            NSLog(@"After sequence %@: Avg bandwidth: %d  trailing: %d", segmentId, (int)strongSelf->_bandwidthTracker.averageBitrate, (int)strongSelf->_bandwidthTracker.trailingAverageBitrate);
+        [strongSelf maybeChangeLevels];
         [weakSelf.delegate downloader:weakSelf gotSegment:response];
         [weakSelf fetchAllSegments:remaining];
         
