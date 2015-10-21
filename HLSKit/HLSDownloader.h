@@ -40,7 +40,7 @@ typedef enum : NSUInteger {
 @property (nonatomic) NSTimeInterval refreshInterval; // Defaults to 0.5 seconds
 // How many segments to download, expressed as a total duration.
 @property (nonatomic) NSTimeInterval bufferTime; // Defaults to 4.0 seconds
-
+@property (nonatomic) int maxSegmentQueue; // Defaults to zero: no limit
 
 - (instancetype)initWithUrl:(NSString*)url;
 - (instancetype)initWithUrl:(NSString*)url delegate:(id<HLSDownloaderDelegate>)delegate;

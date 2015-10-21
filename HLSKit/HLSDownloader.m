@@ -21,12 +21,17 @@
     NSString *_lastPlaylistResponse;
     BOOL _networkBusy;
     NSMutableSet *_seenSegments;
+    NSMutableArray<M3U8SegmentInfo*>*_downloadQueue;
     HLSBandwidthTracker *_bandwidthTracker;
+    NSTimer *_downloadTimer;
+    NSTimeInterval _downloadInterval;
+    BOOL _downloading;
 }
 @synthesize numLevels = _numLevels;
 @synthesize currentLevel = _currentLevel;
 @synthesize bufferTime = _bufferTime;
 @synthesize logLevel = _logLevel;
+@synthesize maxSegmentQueue = _maxSegmentQueue;
 
 - (instancetype)initWithUrl:(NSString *)url {
     return [self initWithUrl:url delegate:nil];
@@ -37,10 +42,12 @@
         _url = url;
         self.delegate = delegate;
         self.refreshInterval = 0.5;
+        _downloadInterval = self.refreshInterval / 2.0;
         _currentLevel = -1;
         _bufferTime = 2.0;
         _seenSegments = [NSMutableSet set];
         _bandwidthTracker = [[HLSBandwidthTracker alloc] init];
+        _downloadQueue = [NSMutableArray array];
     }
     return self;
 }
@@ -125,9 +132,10 @@
             [strongSelf stop];
         }
     } failure:^(NSError *error) {
-        if (!weakSelf) return;
-        _networkBusy = NO;
-        [weakSelf.delegate downloader:weakSelf playlistError:error];
+        __strong typeof(weakSelf)strongSelf = weakSelf;
+        if (!strongSelf) return;
+        strongSelf->_networkBusy = NO;
+        [strongSelf.delegate downloader:strongSelf playlistError:error];
     }];
 }
 
@@ -149,31 +157,71 @@
     return 0; // return -1 as an error case?
 }
 
-- (void)fetchAllSegments:(NSArray<M3U8SegmentInfo*>*)segments {
-    if (!segments.count) return;
-    M3U8SegmentInfo *segment = segments.firstObject;
-    NSArray *remaining = [segments subarrayWithRange:NSMakeRange(1, segments.count - 1)];
+- (void)downloadSegments {
+    M3U8SegmentInfo *segment;
+    @synchronized(_downloadQueue) {
+        if (_maxSegmentQueue > 0) {
+            while (_downloadQueue.count > _maxSegmentQueue) {
+                [_downloadQueue removeObjectAtIndex:0];
+            }
+        }
+        //NSLog(@"downloadSegments; queue length %d", _downloadQueue.count);
+        if (_downloadQueue.count == 0) {
+            [_downloadTimer invalidate];
+            _downloadTimer = nil;
+            return;
+        }
+        if (_downloading) return; // We wait for the previous call to finish
+        segment = _downloadQueue.firstObject;
+        [_downloadQueue removeObjectAtIndex:0]; // We essentially want a popFirst or "shift" operation
+    }
     id segmentId = segment.sequence ? @(segment.sequence) : segment.mediaURL;
     if ([_seenSegments containsObject:segmentId]) {
-        [self fetchAllSegments:remaining];
+        // We got a duplicate segment?
+        [self downloadSegments];
         return;
     }
     [_seenSegments addObject:segmentId];
     double startTime = CACurrentMediaTime();
+    _downloading = YES;
     __weak typeof(self)weakSelf = self;
     [[HLSNetworkManager sharedManager] getData:segment.mediaURL success:^(NSData *response) {
         if (!weakSelf) return;
         __strong typeof(weakSelf)strongSelf = weakSelf;
-        [strongSelf->_bandwidthTracker addDatapoint:response.length time:(CACurrentMediaTime() - startTime)];
-        if (_logLevel >= HLSLogLevelDebug)
-            NSLog(@"After sequence %@: Avg bandwidth: %d  trailing: %d", segmentId, (int)strongSelf->_bandwidthTracker.averageBitrate, (int)strongSelf->_bandwidthTracker.trailingAverageBitrate);
-        [strongSelf maybeChangeLevels];
+        BOOL downloadMore = NO;
+        @synchronized(strongSelf->_downloadQueue) {
+            strongSelf->_downloading = NO;
+            NSTimeInterval timeElapsed = (CACurrentMediaTime() - startTime);
+            [strongSelf->_bandwidthTracker addDatapoint:response.length time:timeElapsed];
+            if (strongSelf->_logLevel >= HLSLogLevelDebug)
+                NSLog(@"After sequence %@: Avg bandwidth: %d  trailing: %d", segmentId, (int)strongSelf->_bandwidthTracker.averageBitrate, (int)strongSelf->_bandwidthTracker.trailingAverageBitrate);
+            [strongSelf maybeChangeLevels];
+            if (strongSelf->_downloadQueue.count > 0 && timeElapsed < strongSelf->_downloadInterval) {
+                // If there are more segments queued up, just plow ahead
+                downloadMore = YES;
+            }
+        }
+        if (downloadMore) [strongSelf downloadSegments];
         [weakSelf.delegate downloader:weakSelf gotSegment:response];
-        [weakSelf fetchAllSegments:remaining];
-        
     } failure:^(NSError *error) {
+        if (!weakSelf) return;
+        __strong typeof(weakSelf)strongSelf = weakSelf;
+        strongSelf->_downloading = NO;
         [weakSelf.delegate downloader:weakSelf playlistError:error];
     }];
+}
+
+- (void)fetchAllSegments:(NSArray<M3U8SegmentInfo*>*)segments {
+    if (!segments.count) return;
+    [_downloadQueue addObjectsFromArray:segments];
+    if (!_downloadTimer) {
+        if (_downloadQueue.count > 1) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                _downloadTimer = [NSTimer scheduledTimerWithTimeInterval:_downloadInterval target:self selector:@selector(downloadSegments) userInfo:nil repeats:YES];
+            });
+        }
+        [self downloadSegments];
+    }
 }
 
 @end
