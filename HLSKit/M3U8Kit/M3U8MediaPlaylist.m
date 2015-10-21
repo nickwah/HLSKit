@@ -91,6 +91,7 @@
         
 		// Read the EXTINF number between #EXTINF: and the comma
 		NSRange commaRange = [remainingSegments rangeOfString:@","];
+        if (commaRange.location == NSNotFound) commaRange = [remainingSegments rangeOfString:@"\n" options:0 range:NSMakeRange(segmentRange.location, remainingSegments.length - segmentRange.location)];
         NSRange valueRange = NSMakeRange(segmentRange.location + 8, commaRange.location - (segmentRange.location + 8));
         if (commaRange.location == NSNotFound || valueRange.location > remainingSegments.length -1)
             break;
